@@ -18,9 +18,6 @@ builder.Services.AddAzureClients(acfBuilder =>
 builder.Services.Configure<AzureServiceBusQueuesAndTopicsConfiguration>(
             builder.Configuration.GetSection("ServiceBus"));
 
-// Register your custom wrappers
-//builder.Services.AddTransient<IServiceBusSenderWrapper, ServiceBusSenderWrapper>();
-//builder.Services.AddSingleton<IServiceBusClientWrapper, ServiceBusClientWrapper>();
 // Register your MessagePublisher class
 builder.Services.AddTransient<IMessagePublisher, MessagePublisher>();
 
