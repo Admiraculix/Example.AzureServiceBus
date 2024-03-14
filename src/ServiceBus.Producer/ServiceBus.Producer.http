@@ -1,0 +1,32 @@
+@ServiceBus.Producer_HostAddress = http://localhost:5224
+
+POST {{ServiceBus.Producer_HostAddress}}/publish/text/{isQueue}
+Content-Type: text/plain
+
+This is the text to publish.
+
+###
+
+POST {{ServiceBus.Producer_HostAddress}}/publish/customer
+Content-Type: application/json
+
+{
+  "isQueue": false,
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "fullName": "John Snow",
+  "email": "jshnow@test.com",
+  "phoneNumber": "+359000000001",
+  "dateOfBirth": "2000-03-12"
+}
+
+###
+
+POST {{ServiceBus.Producer_HostAddress}}/publish/order
+Content-Type: application/json
+
+{
+  "isQueue": false,
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "productName": "D3 hat"
+}
+###
