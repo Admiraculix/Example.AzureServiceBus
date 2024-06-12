@@ -28,7 +28,7 @@ public class MessagePublisher : IMessagePublisher
 
     public Task PublishAsync(string raw, bool isQueue)
     {
-        ServiceBusSender sender = _serviceBusClient.CreateSender(isQueue ? _options.QueueName : _options.TopicName));
+        ServiceBusSender sender = _serviceBusClient.CreateSender(isQueue ? _options.QueueName : _options.TopicName);
         var message = new ServiceBusMessage(Encoding.UTF8.GetBytes(raw));
         message.ApplicationProperties["messageType"] = "Raw";
         return sender.SendMessageAsync(message);

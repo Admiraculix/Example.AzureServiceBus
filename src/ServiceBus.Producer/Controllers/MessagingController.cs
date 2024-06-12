@@ -18,12 +18,15 @@ namespace ServiceBus.Producer.Controllers
             _messagePublisher = messagePublisher;
         }
 
-        [HttpPost("publish/text/{isQueue}")]
-        public async Task<IActionResult> PublishTextAsync([FromQuery] bool isQueue)
+        //use this endpoint from Postman
+        [HttpPost("publish/text")]
+        [Consumes("text/plain")]
+        [Produces("text/plain")]
+        public async Task<IActionResult> PublishTextAsync()
         {
             using var reader = new StreamReader(Request.Body);
             var bodyAsText = await reader.ReadToEndAsync();
-            await _messagePublisher.PublishAsync(bodyAsText, isQueue);
+            await _messagePublisher.PublishAsync(bodyAsText, true);
             return Ok();
         }
 
